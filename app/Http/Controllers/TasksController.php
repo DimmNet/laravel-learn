@@ -82,26 +82,28 @@ class TasksController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Отображение формы редактирования задачи.
      *
-     * @param  \App\Tasks  $tasks
-     * @return \Illuminate\Http\Response
+     * @param  \App\Tasks  $task
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(Tasks $tasks)
+    public function edit(Tasks $task)
     {
-        //
+        return view('tasks.edit', compact('task'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Сохраняем задачу.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tasks  $tasks
-     * @return \Illuminate\Http\Response
+     * @param  \App\Tasks  $task
+     * @param  TasksForm $form
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Tasks $tasks)
+    public function update(Tasks $task, TasksForm $form)
     {
-        //
+        $task->update(request()->all());
+
+        return redirect()->route('tasks.show', [$task->id, $task->clearTitle]);
     }
 
     /**
