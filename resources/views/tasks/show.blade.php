@@ -20,13 +20,15 @@
 
                         @can('update', $task)
                             <div class="d-flex justify-content-end">
-                                <div class="p-2">
-                                    <form action="{{route('tasks.complete', $task->id)}}" method="POST" role="form">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-outline-info">Пометить выполненым</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                @if(!$task->complete)
+                                    <div class="p-2">
+                                        <form action="{{route('tasks.complete', $task->id)}}" method="GET" role="form">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-outline-info">Пометить выполненым</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                @endif
 
                                 <div class="p-2">
                                     <form action="{{route('tasks.edit', $task->id)}}" method="GET" role="form">

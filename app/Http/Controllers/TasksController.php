@@ -69,6 +69,21 @@ class TasksController extends Controller
     }
 
     /**
+     * Отметка задачи выполненой.
+     *
+     * @param  \App\Tasks  $task
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function complete(Tasks $task)
+    {
+        $task->update([
+            'complete' => 1
+        ]);
+
+        return redirect()->route('tasks.show', [$task->id, $task->clearTitle]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Tasks  $tasks
