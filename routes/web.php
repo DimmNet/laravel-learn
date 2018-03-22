@@ -24,5 +24,5 @@ Route::get('/task/complete/{task}', 'TasksController@complete')->name('tasks.com
     ->where('task', '\d+')->middleware('can:update,task');
 Route::get('/task/edit/{task}', 'TasksController@edit')->name('tasks.edit')
     ->where('task', '\d+')->middleware('can:update,task');
-Route::delete('task/{task}', 'TasksController@destroy')->name('tasks.delete')
+Route::delete('task/delete/{task}', 'TasksController@destroy')->name('tasks.delete')
     ->where('task', '\d+')->middleware('can:delete,task');

@@ -63,8 +63,6 @@ class TasksController extends Controller
             new Tasks(request()->all())
         );
 
-        session()->flash('message', 'Ваша задача создана!');
-
         return redirect()->route('tasks.show', [$task->id, $task->clearTitle]);
     }
 
@@ -72,7 +70,7 @@ class TasksController extends Controller
      * Отметка задачи выполненой.
      *
      * @param  \App\Tasks  $task
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function complete(Tasks $task)
     {
@@ -107,13 +105,15 @@ class TasksController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление задачи.
      *
-     * @param  \App\Tasks  $tasks
-     * @return \Illuminate\Http\Response
+     * @param  \App\Tasks  $task
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Tasks $tasks)
+    public function destroy(Tasks $task)
     {
-        //
+        $task->delete();
+
+        return redirect()->home();
     }
 }
