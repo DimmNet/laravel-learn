@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TasksForm;
 use App\Tasks;
 use Illuminate\Http\Request;
 
@@ -41,24 +42,30 @@ class TasksController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Отображение формы создания задачи.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Сохраняем задачу.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param TasksForm $form
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(TasksForm $form)
     {
-        //
+        $task = auth()->user()->tasks()->save(
+            new Tasks(request()->all())
+        );
+
+        session()->flash('message', 'Ваша задача создана!');
+
+        return redirect()->route('tasks.show', [$task->id, $task->clearTitle]);
     }
 
     /**
