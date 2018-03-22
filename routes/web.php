@@ -15,4 +15,6 @@ Route::redirect('/', '/home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'TasksController@index')->name('home');
+Route::get('/task/{task}/{title}', 'TasksController@show')->name('tasks.show')
+    ->where('task', '\d+');
