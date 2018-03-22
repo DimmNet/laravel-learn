@@ -30,6 +30,17 @@ class TasksController extends Controller
     }
 
     /**
+     * Отображение задачи по её ID.
+     *
+     * @param  \App\Tasks  $task
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Tasks $task)
+    {
+        return view('tasks.show', compact('task'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -46,17 +57,6 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Tasks  $tasks
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tasks $tasks)
     {
         //
     }
