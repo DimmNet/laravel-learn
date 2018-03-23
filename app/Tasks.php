@@ -45,6 +45,6 @@ class Tasks extends Model
      */
     public function getClearTitleAttribute()
     {
-        return str_replace(' ', '_', $this->title);
+        return str_slug($this->title, '_');
     }
 }
