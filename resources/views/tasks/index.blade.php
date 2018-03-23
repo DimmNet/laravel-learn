@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Задачи
+                    <a href="{{route('home')}}">Мои задачи</a> | <a href="{{route('tasks.all')}}">Все задачи</a>
                     <p style="float: right">
                         <a href="{{route('tasks.create')}}">Добавить задачу</a>
                     </p>

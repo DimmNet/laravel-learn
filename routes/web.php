@@ -15,7 +15,8 @@ Route::redirect('/', '/home');
 
 Auth::routes();
 
-Route::get('/home', 'TasksController@index')->name('home');
+Route::get('/home', 'TasksController@showUserTasks')->name('home');
+Route::get('/all', 'TasksController@index')->name('tasks.all');
 Route::get('/task/{task}/{title}', 'TasksController@show')->name('tasks.show')
     ->where('task', '\d+');
 Route::get('/task/create', 'TasksController@create')->name('tasks.create');

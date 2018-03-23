@@ -21,7 +21,7 @@ class TasksController extends Controller
     /**
      * Список всех задач для главной страницы.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -31,6 +31,18 @@ class TasksController extends Controller
     }
 
     /**
+     * Список задач авторизованного пользователя
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showUserTasks()
+    {
+        $tasks = auth()->user()->tasks()->orderBy('complete')->paginate();
+
+        return view('tasks.index', compact('tasks'));
+    }
+
+        /**
      * Отображение задачи по её ID.
      *
      * @param  \App\Tasks  $task
