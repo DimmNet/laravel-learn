@@ -19,7 +19,6 @@ Route::get('/home', 'TasksController@showUserTasks')->name('home');
 Route::get('/all', 'TasksController@showAllTasks')->name('tasks.all');
 
 Route::prefix('task')->name('tasks.')->group(function (){
-
     Route::get('/{task}/{title}', 'TasksController@show')->name('show')
         ->where('task', '\d+');
 
@@ -37,4 +36,3 @@ Route::prefix('task')->name('tasks.')->group(function (){
     Route::delete('delete/{task}', 'TasksController@destroy')->name('delete')
         ->where('task', '\d+')->middleware('can:delete,task');
 });
-
